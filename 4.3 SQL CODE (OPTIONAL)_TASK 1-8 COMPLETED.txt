@@ -42,6 +42,19 @@ WHERE MISSION_OUTCOME = 'Failure (in flight)';
 
 --Task 8
 --List the names of the booster_versions which have carried the maximum payload mass. Use a subquery
+SELECT DISTINCT(BOOSTER_VERSION) FROM SPACEXTBL 
+WHERE PAYLOAD_MASS__KG_ = (SELECT MAX(PAYLOAD_MASS__KG_) FROM SPACEXTBL);
+    
+--Task 9
+--List the failed landing_outcomes in drone ship, their booster versions, and launch site names for in year 2015
+SELECT BOOSTER_VERSION, LAUNCH_SITE FROM SPACEXTBL 
+WHERE (LANDING__OUTCOME = 'Failure (drone ship)') AND (EXTRACT(YEAR FROM DATE) = '2015');
 
+--Task 10
+--Rank the count of landing outcomes (such as Failure (drone ship) or Success (ground pad)) between the date 2010-06-04 and 2017-03-20, in descending order
+SELECT LANDING__OUTCOME, COUNT(LANDING__OUTCOME) AS TOTAL_NUMBER FROM SPACEXTBL
+WHERE DATE BETWEEN '2010-06-04' AND '2017-03-20'
+GROUP BY LANDING__OUTCOME
+ORDER BY TOTAL_NUMBER DESC;
 
 SELECT max(Date) from SPACEXTBL;
