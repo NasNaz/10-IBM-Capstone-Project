@@ -41,7 +41,10 @@ GROUP BY MISSION_OUTCOME;
 --List the names of the booster_versions which have carried the maximum payload mass. Use a subquery
 SELECT DISTINCT(BOOSTER_VERSION) FROM SPACEXTBL 
 WHERE PAYLOAD_MASS__KG_ = (SELECT MAX(PAYLOAD_MASS__KG_) FROM SPACEXTBL);
-    
+--OR
+SELECT DISTINCT(BOOSTER_VERSION), PAYLOAD_MASS__KG_ FROM SPACEXTBL 
+WHERE PAYLOAD_MASS__KG_ = (SELECT MAX(PAYLOAD_MASS__KG_) FROM SPACEXTBL); 
+
 --Task 9
 --List the failed landing_outcomes in drone ship, their booster versions, and launch site names for in year 2015
 SELECT BOOSTER_VERSION, LAUNCH_SITE FROM SPACEXTBL 
