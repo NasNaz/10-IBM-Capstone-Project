@@ -33,12 +33,9 @@ AND LANDING__OUTCOME = 'Success (drone ship)';
 
 --Task 7
 --List the total number of successful and failure mission outcomes
-SELECT COUNT(MISSION_OUTCOME) FROM SPACEXTBL
-WHERE MISSION_OUTCOME = 'Success';
-
-
-SELECT COUNT(MISSION_OUTCOME) FROM SPACEXTBL
-WHERE MISSION_OUTCOME = 'Failure (in flight)';
+SELECT DISTINCT(MISSION_OUTCOME), COUNT(*) AS "LAUNCH_RATE" 
+FROM SPACEXTBL
+GROUP BY MISSION_OUTCOME;
 
 --Task 8
 --List the names of the booster_versions which have carried the maximum payload mass. Use a subquery
